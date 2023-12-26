@@ -30,10 +30,12 @@ void loop() {
   // put your main code here, to run repeatedly:
   int l = analogRead(PM),t=analogRead(TM);
   double dC = map(l, 0, 1023, 0, 45), Temp;
+  // Temperature Conversion
   double R2 = R1 * (1023.0 / t - 1.0);
   double logR2 = log(R2);
   Temp = (1.0 / (A + B*logR2 + C*logR2*logR2*logR2));
   Temp = Temp - 273.15;
+  // Maintenance of Temperature
   if(Temp <= dC)
   {
     digitalWrite(13, HIGH);
